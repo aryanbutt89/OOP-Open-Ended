@@ -1,0 +1,34 @@
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+#include<fstream>
+using namespace std;
+
+class Student{
+public:
+    int Student_Id;
+    string Email;
+    vector<string>Enr_Crs;
+
+    void Enroll_courses(string course, ofstream& outFile){
+        Enr_Crs.push_back(course);
+        cout << "Courses Enrolled are " << course << endl;
+        outFile << "Courses Enrolled are " << course << endl;
+    }
+    void Drop_course(string course, ofstream& outFile){
+        for(int i=0;i<Enr_Crs.size();i++){
+            Enr_Crs.erase(Enr_Crs.begin()+i);
+        }
+        cout << "Course erased is " << course << endl;
+        outFile << "Course erased is " << course << endl;
+    }
+    void ViewCourses(ofstream& outFile){
+        if(!Enr_Crs.empty()){
+            for (const auto& course : Enr_Crs) {
+                cout << "Courses are "<< course << endl;
+                outFile << "Courses are "<< course << endl;
+            }
+        }
+    }
+};
