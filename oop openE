@@ -32,3 +32,46 @@ public:
         }
     }
 };
+class Teacher {
+private:
+    string teacherID;
+    string name;
+    string email;
+    vector<string> coursesTaught;
+
+public:
+    Teacher(string id, string n, string e) : teacherID(id), name(n), email(e) {}
+
+    string getTeacherID() const {
+        return teacherID;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    string getEmail() const {
+        return email;
+    }
+
+    void assignCourse(const string& course, ofstream& outFile) {
+        coursesTaught.push_back(course);
+        cout << name << " assigned to teach " << course << endl;
+        outFile << name << " assigned to teach " << course << endl;
+    }
+
+    void removeCourse(const string& course, ofstream& outFile) {
+        coursesTaught.erase(remove(coursesTaught.begin(), coursesTaught.end(), course), coursesTaught.end());
+        cout << name << " removed from teaching " << course << endl;
+        outFile << name << " removed from teaching " << course << endl;
+    }
+
+    void viewCourses(ofstream& outFile) const {
+        cout << name << "'s assigned courses:" << endl;
+        outFile << name << "'s assigned courses:" << endl;
+        for (const auto& course : coursesTaught) {
+            cout << course << endl;
+            outFile << course << endl;
+        }
+    }
+};
