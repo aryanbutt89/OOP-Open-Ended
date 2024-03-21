@@ -119,9 +119,9 @@ public:
         }
     }
 };
-int main() {
-    ofstream outFile("BEASTOMA.txt");
-    if (outFile.is_open()) {
+        int main() {
+        ofstream outFile("BEASTOMA.txt");
+        if (outFile.is_open()) {
         Student s1;
         s1.Student_Id = 456889;
         s1.Email = "Shanikhan@gmail.com";
@@ -133,3 +133,33 @@ int main() {
         s1.Enroll_courses("Object Oriented Programing", outFile);
         s1.Drop_course("DSA", outFile);
         s1.ViewCourses(outFile);
+         Teacher t1("ISE", "Dr. Awais", "aryan9871@gmail.com");
+        t1.assignCourse("DSA", outFile);
+        t1.assignCourse("OOP", outFile);
+        t1.viewCourses(outFile);
+        Teacher* teacher = new Teacher("ISE", "Dr. Awais", "awais897@gmail.com");
+
+        Course* course = new Course("CSCI101", "Introduction to Computer Science", teacher, 30);
+
+        course->addStudent("ABDULLAH", outFile);
+        course->addStudent("AHMED", outFile);
+        course->addStudent("ARHAM", outFile);
+        course->addStudent("MUSTAFA", outFile);
+
+        course->viewStudents(outFile);
+
+        course->removeStudent("AHMED", outFile);
+
+        course->viewStudents(outFile);
+
+        delete course;
+        delete teacher;
+
+        outFile.close();
+        } else {
+        cout << "Unable to open output file." << endl;
+        }
+
+        return 0;
+        }
+
