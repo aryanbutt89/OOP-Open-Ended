@@ -75,3 +75,47 @@ public:
         }
     }
 };
+
+class Course {
+private:
+    string courseCode;
+    string courseName;
+    Teacher* teacher;
+    vector<string> studentsEnrolled;
+    int maxCapacity;
+
+public:
+    Course(const string& code, const string& name, Teacher* teacher, int capacity): courseCode(code), courseName(name), teacher(teacher), maxCapacity(capacity) {}
+
+    void addStudent(const string& studentID, ofstream& outFile) {
+        if (studentsEnrolled.size() < maxCapacity) {
+            studentsEnrolled.push_back(studentID);
+            cout << "Student with ID " << studentID << " enrolled in " << courseName << endl;
+            outFile << "Student with ID " << studentID << " enrolled in " << courseName << endl;
+        } else {
+            cout << "Course " << courseName << " is full. Cannot enroll more students." << endl;
+            outFile << "Course " << courseName << " is full. Cannot enroll more students." << endl;
+        }
+    }
+
+    void removeStudent(const string& studentID, ofstream& outFile) {
+        auto it = find(studentsEnrolled.begin(), studentsEnrolled.end(), studentID);
+        if (it != studentsEnrolled.end()) {
+            studentsEnrolled.erase(it);
+            cout << "Student with ID " << studentID << " removed from " << courseName << endl;
+            outFile << "Student with ID " << studentID << " removed from " << courseName << endl;
+        } else {
+            cout << "Student with ID " << studentID << " not found in " << courseName << endl;
+            outFile << "Student with ID " << studentID << " not found in " << courseName << endl;
+        }
+    }
+
+    void viewStudents(ofstream& outFile) const {
+        cout << "Students enrolled in " << courseName << ":" << endl;
+        outFile << "Students enrolled in " << courseName << ":" << endl;
+        for (const auto& student : studentsEnrolled) {
+            cout << student << endl;
+            outFile << student << endl;
+        }
+    }
+};
