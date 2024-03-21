@@ -119,3 +119,17 @@ public:
         }
     }
 };
+int main() {
+    ofstream outFile("BEASTOMA.txt");
+    if (outFile.is_open()) {
+        Student s1;
+        s1.Student_Id = 456889;
+        s1.Email = "Shanikhan@gmail.com";
+        cout << "Student Information is: " << endl  <<"1. Student Id: "<< s1.Student_Id << endl;
+        cout << "2. Student Email: " << s1.Email << endl;
+        outFile << "Student Information is: " << endl  <<"1. Student Id: "<< s1.Student_Id << endl;
+        outFile << "2. Student Email " << s1.Email << endl;
+        s1.Enroll_courses("DSA", outFile);
+        s1.Enroll_courses("Object Oriented Programing", outFile);
+        s1.Drop_course("DSA", outFile);
+        s1.ViewCourses(outFile);
